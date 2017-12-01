@@ -1,6 +1,8 @@
 require 'slack_bot_server'
 require 'slack_bot_server/redis_queue'
-require 'slack_bot_server/simple_bot'
+
+$:.unshift File.dirname(__FILE__)
+require 'max_bot'
 
 # Use a Redis-based queue to add/remove bots and to trigger
 # bot messages to be sent
@@ -14,7 +16,7 @@ server = SlackBotServer::Server.new(queue: queue)
 server.on_add do |token|
   # Return a new bot instance to the server. `SimpleBot` is a provided
   # example bot with some very simple behaviour.
-  SlackBotServer::SimpleBot.new(token: token)
+  SlackBotServer::MaxBot.new(token: token)
 end
 
 SlackIntegration.all.each do |integration|
