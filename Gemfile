@@ -18,6 +18,9 @@ gem 'therubyracer', platforms: :ruby
 
 gem 'figaro'
 
+gem 'redis'
+gem 'slack-bot-server'
+
 group :development, :test do
   gem 'pry-rails'
   gem 'better_errors'
