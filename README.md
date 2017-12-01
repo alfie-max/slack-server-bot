@@ -1,24 +1,8 @@
-# README
+# Your own Slack Bot
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+####Setup Instructions
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+1. Clone the repo and set up the rails app
+2. Config files required : secrets.yml database.yml application.yml
+3. Start the rails app and visit the root path
+4. You'll see an `Add to Slack` button, click on that and authorize the team to which the app is to be added
