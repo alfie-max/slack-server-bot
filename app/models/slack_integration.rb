@@ -1,6 +1,8 @@
 require 'slack_bot_server/remote_control'
 
 class SlackIntegration < ApplicationRecord
+  validates_presence_of :team_id, :access_token, :bot_access_token
+
   after_create :add_to_slack_server
 
   private

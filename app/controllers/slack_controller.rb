@@ -12,14 +12,20 @@ class SlackController < ApplicationController
         redirect_uri: slack_oauth_url
       )
       if response['ok']
-        team = SlackIntegration.find_or_create_by(team_id: response['team_id'])
-        team.update_attributes(
+        team =
+          SlackIntegration.find_or_initialize_by(team_id: response['team_id'])
+        if team.persisted?
+          team.destroy
+          team = team.dup
+        end
+        team.assign_attributes(
           team_name: response['team_name'],
           user_id: response['user_id'],
           access_token: response['access_token'],
           bot_user_id: response['bot']['bot_user_id'],
           bot_access_token: response['bot']['bot_access_token']
         )
+        team.save!
         redirect_to root_path
       else
         # there was a failure; check in the response
